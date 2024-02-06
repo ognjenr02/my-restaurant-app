@@ -4,15 +4,19 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Navigation from './routes/Navigation';
 import { GlobalStyles } from './constants';
+import { store } from './redux/store';
+import { Provider } from 'react-redux';
 
 export default function App() {
   return (
-    <>
-      <StatusBar />
-      <NavigationContainer>
-        <Navigation />
-      </NavigationContainer>
-    </>
+    <Provider store={store}>
+      <>
+        <StatusBar />
+        <NavigationContainer>
+          <Navigation />
+        </NavigationContainer>
+      </>
+    </Provider>
   );
 }
 

@@ -5,6 +5,7 @@ import HomeScreen from '../screens/HomeScreen';
 import MapsScreen from '../screens/MapsScreen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
+import LoginScreen from '../screens/LoginScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -42,10 +43,15 @@ function MyTabs() {
 
 function Navigation() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName="Login">
       <Stack.Screen
-        name="MyTabs"
-        component={MyTabs}
+        name="Login"
+        component={LoginScreen}
+        options={{ title: 'Login' }}
+      />
+      <Stack.Screen
+        name="Home"
+        component={HomeScreen}
         options={{ title: 'Home' }}
       />
       <Stack.Screen name="Maps" component={MapsScreen} />
