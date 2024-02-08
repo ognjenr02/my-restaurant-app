@@ -11,13 +11,14 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Buffer } from 'buffer';
 import { GlobalStyles } from '../constants';
+import { useSelector } from 'react-redux';
 
 const Review = () => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const fetchUsers = async () => {
+    const fetchReviews = async () => {
       try {
         const response = await axios.get('http://192.168.1.5:8080/getReviews');
         setData(response.data);
@@ -27,7 +28,7 @@ const Review = () => {
       }
     };
 
-    fetchUsers();
+    fetchReviews();
   }, []);
 
   if (isLoading) {

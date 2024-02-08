@@ -4,10 +4,14 @@ import { GlobalStyles } from '../constants';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import HomeScreen from './HomeScreen';
+import { useDispatch } from 'react-redux';
+import { setToken } from '../redux/usersReducer';
 
 const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
+  const dispatch = useDispatch();
 
   async function handleLogin() {
     try {
@@ -21,6 +25,8 @@ const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
       navigation.navigate('Home');
 
       if (data.token) {
+        dispatch(setToken(data.token)); // dispatch the setToken action with the token as its payload
+        console.log(data.token);
         await AsyncStorage.setItem('token', data.token);
       } else {
         // Handle login failure
@@ -48,8 +54,13 @@ const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
       />
       <Button
         color={GlobalStyles.colors.primary400}
-        title="Prijava"
+        title="Login"
         onPress={handleLogin}
+      />
+      <Button
+        color={GlobalStyles.colors.primary400}
+        title="Sign up"
+        onPress={() => navigation.navigate('Register')}
       />
     </View>
   );
@@ -75,12 +86,5 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 5,
-  },
-  message: {
-    marginTop: 20,
-    color: 'red',
-  },
-  button: {
-    paddingTop: 20,
   },
 });

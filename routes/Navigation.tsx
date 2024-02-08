@@ -6,6 +6,7 @@ import MapsScreen from '../screens/MapsScreen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
 import LoginScreen from '../screens/LoginScreen';
+import RegistrationScreen from '../screens/RegistrationScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -48,6 +49,11 @@ function Navigation() {
         name="Login"
         component={LoginScreen}
         options={{ title: 'Login' }}
+      />
+      <Stack.Screen
+        name="Register"
+        component={RegistrationScreen}
+        options={{ title: 'Register' }}
       />
       <Stack.Screen
         name="Home"

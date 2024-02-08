@@ -7,10 +7,12 @@ interface User {
 
 interface UsersState {
   users: User[];
+  token: string | null;
 }
 
 const initialState: UsersState = {
   users: [],
+  token: null,
 };
 
 const usersSlice = createSlice({
@@ -20,10 +22,13 @@ const usersSlice = createSlice({
     addUser(state, action: PayloadAction<User>) {
       state.users.push(action.payload);
     },
+    setToken(state, action: PayloadAction<string>) {
+      state.token = action.payload;
+    },
     // Add other user actions here
   },
 });
 
-export const { addUser } = usersSlice.actions;
+export const { addUser, setToken } = usersSlice.actions;
 
 export default usersSlice.reducer;
