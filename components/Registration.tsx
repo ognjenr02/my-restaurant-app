@@ -22,7 +22,7 @@ const Registration = () => {
   const registerUser = async (user: User): Promise<any> => {
     try {
       const response = await axios.post(
-        'http://192.168.1.5:8080/registerUsers',
+        'http://192.168.0.36:8080/registerUsers',
         user
       );
 

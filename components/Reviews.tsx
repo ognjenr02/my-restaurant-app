@@ -17,10 +17,20 @@ const Review = () => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  const token = useSelector((state: any) => state.users);
+  console.log(token);
+
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await axios.get('http://192.168.1.5:8080/getReviews');
+        const response = await axios.get(
+          'http://192.168.0.36:8080/getReviews',
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // send the token in the headers
+            },
+          }
+        );
         setData(response.data);
         setIsLoading(false);
       } catch (error) {
