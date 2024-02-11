@@ -13,7 +13,7 @@ import { Buffer } from 'buffer';
 import { GlobalStyles } from '../constants';
 import { useSelector } from 'react-redux';
 
-const Review: React.FC<{ navigation: any }> = ({ navigation }) => {
+const Review = () => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 

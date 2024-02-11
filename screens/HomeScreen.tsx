@@ -1,12 +1,12 @@
 import { StyleSheet, View } from 'react-native';
 import React from 'react';
-import Review from '../components/Reviews';
 import { GlobalStyles } from '../constants';
+import ReviewsList from '../components/ReviewsList';
 
 const HomeScreen = () => {
   return (
     <View style={styles.container}>
-      <Review />
+      <ReviewsList />
     </View>
   );
 };
