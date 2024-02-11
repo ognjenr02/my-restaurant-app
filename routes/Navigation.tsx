@@ -7,6 +7,8 @@ import { Ionicons } from '@expo/vector-icons';
 import LoginScreen from '../screens/LoginScreen';
 import RegistrationScreen from '../screens/RegistrationScreen';
 import LogoutButton from '../components/LogoutButton';
+import { GlobalStyles } from '../constants';
+import ReviewScreen from '../screens/ReviewScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -50,21 +52,32 @@ function Navigation() {
       <Stack.Screen
         name="Login"
         component={LoginScreen}
-        options={{ title: 'Login' }}
+        options={{
+          title: 'Login',
+          headerStyle: { backgroundColor: GlobalStyles.colors.primary50 },
+        }}
       />
       <Stack.Screen
         name="Register"
         component={RegistrationScreen}
-        options={{ title: 'Register' }}
+        options={{
+          title: 'Register',
+          headerStyle: { backgroundColor: GlobalStyles.colors.primary50 },
+        }}
       />
       <Stack.Screen
         name="Home"
-        component={HomeScreen}
+        component={MyTabs}
         options={{ title: 'Home', headerRight: () => <LogoutButton /> }}
       />
       <Stack.Screen
         name="Maps"
         component={MyTabs}
+        options={{ title: 'Maps', headerRight: () => <LogoutButton /> }}
+      />
+      <Stack.Screen
+        name="Reviews"
+        component={ReviewScreen}
         options={{ title: 'Maps', headerRight: () => <LogoutButton /> }}
       />
     </Stack.Navigator>

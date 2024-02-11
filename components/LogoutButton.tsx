@@ -4,6 +4,7 @@ import { removeToken } from '../redux/usersReducer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Pressable, Text, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { GlobalStyles } from '../constants';
 
 const LogoutButton: React.FC = () => {
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ const LogoutButton: React.FC = () => {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: '#2196F3',
+    backgroundColor: GlobalStyles.colors.primary200,
     padding: 10,
     alignItems: 'center',
     justifyContent: 'center',

@@ -13,7 +13,7 @@ import { Buffer } from 'buffer';
 import { GlobalStyles } from '../constants';
 import { useSelector } from 'react-redux';
 
-const Review = () => {
+const Review: React.FC<{ navigation: any }> = ({ navigation }) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -23,14 +23,11 @@ const Review = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await axios.get(
-          'http://192.168.0.36:8080/getReviews',
-          {
-            headers: {
-              Authorization: `Bearer ${token}`, // send the token in the headers
-            },
-          }
-        );
+        const response = await axios.get('http://192.168.1.5:8080/getReviews', {
+          headers: {
+            Authorization: `Bearer ${token}`, // send the token in the headers
+          },
+        });
         setData(response.data);
         setIsLoading(false);
       } catch (error) {
@@ -42,7 +39,9 @@ const Review = () => {
   }, []);
 
   if (isLoading) {
-    return <ActivityIndicator size="large" color="#0000ff" />;
+    return (
+      <ActivityIndicator size="large" color={GlobalStyles.colors.primary400} />
+    );
   }
 
   return (

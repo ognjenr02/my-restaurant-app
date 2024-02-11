@@ -19,7 +19,7 @@ const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
     }
 
     try {
-      const response = await axios.get('http://192.168.0.36:8080/login', {
+      const response = await axios.get('http://192.168.1.5:8080/login', {
         params: {
           username: username,
           password: password,

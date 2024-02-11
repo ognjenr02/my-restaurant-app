@@ -1,6 +1,7 @@
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 import React, { useState } from 'react';
 import axios from 'axios';
+import { GlobalStyles } from '../constants';
 
 interface User {
   FirstName: string;
@@ -22,7 +23,7 @@ const Registration = () => {
   const registerUser = async (user: User): Promise<any> => {
     try {
       const response = await axios.post(
-        'http://192.168.0.36:8080/registerUsers',
+        'http://192.168.1.5:8080/registerUsers',
         user
       );
 
@@ -80,13 +81,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     height: 765,
+    backgroundColor: GlobalStyles.colors.primary50,
   },
   input: {
     width: '80%',
     padding: 10,
     marginBottom: 20,
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: GlobalStyles.colors.gray500,
     borderRadius: 5,
   },
 });
