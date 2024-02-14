@@ -6,9 +6,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
 import LoginScreen from '../screens/LoginScreen';
 import RegistrationScreen from '../screens/RegistrationScreen';
-import LogoutButton from '../components/LogoutButton';
+import LogoutButton from '../components/buttons/LogoutButton';
 import { GlobalStyles } from '../constants';
 import ReviewScreen from '../screens/ReviewScreen';
+import AddReviewScreen from '../screens/AddReviewScreen';
+import AddReviewButton from '../components/buttons/AddReviewButton';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -68,7 +70,11 @@ function Navigation() {
       <Stack.Screen
         name="Home"
         component={MyTabs}
-        options={{ title: 'Home', headerRight: () => <LogoutButton /> }}
+        options={{
+          title: '',
+          headerRight: () => <AddReviewButton />,
+          headerLeft: () => <LogoutButton />,
+        }}
       />
       <Stack.Screen
         name="Maps"
@@ -78,7 +84,15 @@ function Navigation() {
       <Stack.Screen
         name="Reviews"
         component={ReviewScreen}
-        options={{ title: 'Maps', headerRight: () => <LogoutButton /> }}
+        options={{ title: 'Reviews', headerRight: () => <LogoutButton /> }}
+      />
+      <Stack.Screen
+        name="AddReview"
+        component={AddReviewScreen}
+        options={{
+          title: 'Add New Review',
+          headerRight: () => <LogoutButton />,
+        }}
       />
     </Stack.Navigator>
   );

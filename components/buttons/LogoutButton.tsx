@@ -1,10 +1,10 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { removeToken } from '../redux/usersReducer';
+import { removeToken } from '../../redux/usersReducer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Pressable, Text, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { GlobalStyles } from '../constants';
+import { GlobalStyles } from '../../constants';
 
 const LogoutButton: React.FC = () => {
   const dispatch = useDispatch();

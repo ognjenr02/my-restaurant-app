@@ -1,7 +1,7 @@
 import { StyleSheet, View } from 'react-native';
 import React from 'react';
 import { GlobalStyles } from '../constants';
-import ReviewsList from '../components/ReviewsList';
+import ReviewsList from '../components/reviews/ReviewsList';
 
 const HomeScreen = () => {
   return (

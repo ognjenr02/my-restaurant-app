@@ -6,19 +6,24 @@ import {
   Text,
   Pressable,
   View,
+  useWindowDimensions,
 } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Buffer } from 'buffer';
-import { GlobalStyles } from '../constants';
+import { GlobalStyles } from '../../constants';
 import { useSelector } from 'react-redux';
 
 const Review = () => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  // const { width, height } = useWindowDimensions();
+
+  // const widthProperty = width > 180 ? 350 : 20;
+
   const token = useSelector((state: any) => state.users);
-  console.log(token);
+  // console.log(token);
 
   useEffect(() => {
     const fetchReviews = async () => {
@@ -50,6 +55,7 @@ const Review = () => {
       keyExtractor={(item: any, index) => index.toString()}
       renderItem={({ item }) => (
         <Pressable>
+          {/* style={{ width: widthProperty }}> */}
           <View style={styles.container}>
             <View style={styles.header}>
               <Text style={styles.headerText}>{item.Title}</Text>
@@ -60,14 +66,16 @@ const Review = () => {
             <Text>{item.Rating} / 10</Text>
             <Text>{item.UserID}</Text>
             <View style={styles.imageContainer}>
-              <Image
-                style={styles.image}
-                source={{
-                  uri: `data:image/jpeg;base64,${Buffer.from(
-                    item.Picture.data
-                  ).toString('base64')}`,
-                }}
-              />
+              {(
+                <Image
+                  style={styles.image}
+                  source={{
+                    uri: `data:image/jpeg;base64,${Buffer.from(
+                      item.Picture.data
+                    ).toString('base64')}`,
+                  }}
+                />
+              ) || null}
             </View>
           </View>
         </Pressable>

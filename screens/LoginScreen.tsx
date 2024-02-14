@@ -19,11 +19,11 @@ const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
     }
 
     try {
-      const response = await axios.get('http://192.168.1.5:8080/login', {
-        params: {
-          username: username,
-          password: password,
-        },
+      console.log(username);
+      console.log(password);
+      const response = await axios.post('http://192.168.1.5:8080/login', {
+        username: username,
+        password: password,
       });
       const { token } = response.data;
       console.log(token);
@@ -38,9 +38,26 @@ const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
       }
     } catch (error) {
       console.error('Login error:', error);
-      // Handle error (e.g., show an error message)
+      alert('Login error: ' + error);
     }
   }
+
+  //   const { token } = response.data;
+  //   console.log(token);
+
+  //   if (token) {
+  //     await AsyncStorage.setItem('token', token);
+  //     dispatch(setToken(token));
+  //     navigation.navigate('Home');
+  //   } else {
+  //     // Handle login failure
+  //     console.log('Login failed: No token received');
+  //   }
+  // } catch (error) {
+  //   console.error('Login error:', error);
+  //   // Handle error (e.g., show an error message)
+  // }
+  // }
 
   return (
     <View style={styles.container}>

@@ -1,7 +1,7 @@
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 import React, { useState } from 'react';
 import axios from 'axios';
-import { GlobalStyles } from '../constants';
+import { GlobalStyles } from '../../constants';
 
 interface User {
   FirstName: string;
