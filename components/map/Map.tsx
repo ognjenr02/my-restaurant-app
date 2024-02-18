@@ -1,13 +1,15 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import MapView, { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
 import axios from 'axios';
+import { GlobalStyles } from '../../constants';
 
 const Map = () => {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState('');
   const [restaurants, setRestaurants] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchRestaurants = async (location: any) => {
     try {
@@ -15,6 +17,7 @@ const Map = () => {
         `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location.coords.latitude},${location.coords.longitude}&radius=1000&type=restaurant&key=AIzaSyDmOT3cKuSWpJTkwYHpijlaojjSpSU4mTc`
       );
       setRestaurants(response.data.results);
+      setIsLoading(false);
     } catch (error) {
       console.error(error);
     }
@@ -35,6 +38,12 @@ const Map = () => {
       fetchRestaurants(location);
     })();
   }, []);
+
+  if (isLoading) {
+    return (
+      <ActivityIndicator size="large" color={GlobalStyles.colors.primary400} />
+    );
+  }
 
   if (errorMsg) {
     return <Text>{errorMsg}</Text>;

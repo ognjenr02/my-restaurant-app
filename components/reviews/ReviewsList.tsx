@@ -13,17 +13,20 @@ import axios from 'axios';
 import { Buffer } from 'buffer';
 import { GlobalStyles } from '../../constants';
 import { useSelector } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
 
-const Review = () => {
+const ReviewsList: React.FC = () => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  const navigation = useNavigation();
 
   // const { width, height } = useWindowDimensions();
 
   // const widthProperty = width > 180 ? 350 : 20;
 
   const token = useSelector((state: any) => state.users);
-  // console.log(token);
+  console.log(token);
 
   useEffect(() => {
     const fetchReviews = async () => {
@@ -60,11 +63,13 @@ const Review = () => {
             <View style={styles.header}>
               <Text style={styles.headerText}>{item.Title}</Text>
             </View>
-            <Text>Restoran: {item.RestaurantName}</Text>
-            <Text>Lokacija: {item.RestaurantLocation}</Text>
-            <Text>{item.Comment.split(' ').slice(0, 10).join(' ')}...</Text>
-            <Text>{item.Rating} / 10</Text>
-            <Text>{item.UserID}</Text>
+            <Text>Restoraunt: {item.RestaurantName}</Text>
+            <Text>Location: {item.RestaurantLocation}</Text>
+            <Text>
+              Comment: {item.Comment.split(' ').slice(0, 10).join(' ')}...
+            </Text>
+            <Text>Rating: {item.Rating} / 10</Text>
+            <Text>Username: {item.Username}</Text>
             <View style={styles.imageContainer}>
               {(
                 <Image
@@ -84,7 +89,7 @@ const Review = () => {
   );
 };
 
-export default Review;
+export default ReviewsList;
 
 const styles = StyleSheet.create({
   container: {

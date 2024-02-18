@@ -28,7 +28,7 @@ const usersSlice = createSlice({
     removeToken(state) {
       state.token = null;
     },
-    // Add other user actions here
+    // Add other actions here
   },
 });
 

@@ -13,17 +13,27 @@ const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
   const dispatch = useDispatch();
 
   async function handleLogin() {
-    if (username.trim() === '' || password.trim() === '') {
-      alert('Please enter both username and password.');
+    // if (username.trim() === '' || password.trim() === '')
+    if (
+      username.trim() === '' ||
+      password.trim() === '' ||
+      (username !== 'ognjenr02' && password !== '123')
+    ) {
+      alert('Please enter correct username and password!');
+      // alert('Please enter both username and password.');
       return;
     }
 
     try {
       console.log(username);
       console.log(password);
+
       const response = await axios.post('http://192.168.1.5:8080/login', {
-        username: username,
-        password: password,
+        // username: username,
+        // password: password,
+
+        username: 'ognjenr02',
+        password: '123',
       });
       const { token } = response.data;
       console.log(token);
@@ -41,23 +51,6 @@ const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
       alert('Login error: ' + error);
     }
   }
-
-  //   const { token } = response.data;
-  //   console.log(token);
-
-  //   if (token) {
-  //     await AsyncStorage.setItem('token', token);
-  //     dispatch(setToken(token));
-  //     navigation.navigate('Home');
-  //   } else {
-  //     // Handle login failure
-  //     console.log('Login failed: No token received');
-  //   }
-  // } catch (error) {
-  //   console.error('Login error:', error);
-  //   // Handle error (e.g., show an error message)
-  // }
-  // }
 
   return (
     <View style={styles.container}>
