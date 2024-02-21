@@ -6,7 +6,6 @@ import {
   Text,
   Pressable,
   View,
-  useWindowDimensions,
 } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -21,12 +20,7 @@ const ReviewsList: React.FC = () => {
 
   const navigation = useNavigation();
 
-  // const { width, height } = useWindowDimensions();
-
-  // const widthProperty = width > 180 ? 350 : 20;
-
   const token = useSelector((state: any) => state.users);
-  console.log(token);
 
   useEffect(() => {
     const fetchReviews = async () => {
@@ -57,8 +51,12 @@ const ReviewsList: React.FC = () => {
       data={data}
       keyExtractor={(item: any, index) => index.toString()}
       renderItem={({ item }) => (
-        <Pressable>
-          {/* style={{ width: widthProperty }}> */}
+        <Pressable
+          onPress={() =>
+            //@ts-ignore
+            navigation.navigate('Reviews', { reviewId: item.ReviewID })
+          }
+        >
           <View style={styles.container}>
             <View style={styles.header}>
               <Text style={styles.headerText}>{item.Title}</Text>

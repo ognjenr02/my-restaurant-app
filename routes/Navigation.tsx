@@ -24,9 +24,19 @@ function MyTabs() {
         options={{
           headerShown: false,
           title: 'Home',
+          tabBarStyle: {
+            backgroundColor: GlobalStyles.colors.primary100,
+            borderColor: '#000',
+          },
           tabBarLabel: 'Home',
+          tabBarLabelStyle: { color: GlobalStyles.colors.error500 },
+          tabBarActiveBackgroundColor: GlobalStyles.colors.primary50,
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="home-outline" size={size} color={color} />
+            <Ionicons
+              name="home-outline"
+              size={size}
+              color={GlobalStyles.colors.error500}
+            />
           ),
           headerRight: () => <LogoutButton />,
         }}
@@ -37,9 +47,19 @@ function MyTabs() {
         options={{
           headerShown: false,
           title: 'Maps',
+          tabBarStyle: {
+            backgroundColor: GlobalStyles.colors.primary100,
+            borderColor: '#000',
+          },
           tabBarLabel: 'Maps',
+          tabBarLabelStyle: { color: GlobalStyles.colors.error500 },
+          tabBarActiveBackgroundColor: GlobalStyles.colors.primary50,
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="pin-outline" size={size} color={color} />
+            <Ionicons
+              name="pin-outline"
+              size={size}
+              color={GlobalStyles.colors.error500}
+            />
           ),
           headerRight: () => <LogoutButton />,
         }}
@@ -71,6 +91,7 @@ function Navigation() {
         name="Home"
         component={MyTabs}
         options={{
+          headerStyle: { backgroundColor: GlobalStyles.colors.primary100 },
           title: '',
           headerRight: () => <AddReviewButton />,
           headerLeft: () => <LogoutButton />,
@@ -84,13 +105,18 @@ function Navigation() {
       <Stack.Screen
         name="Reviews"
         component={ReviewScreen}
-        options={{ title: 'Reviews', headerRight: () => <LogoutButton /> }}
+        options={{
+          title: 'Reviews',
+          headerStyle: { backgroundColor: GlobalStyles.colors.primary100 },
+          headerRight: () => <LogoutButton />,
+        }}
       />
       <Stack.Screen
         name="AddReview"
         component={AddReviewScreen}
         options={{
           title: 'Add New Review',
+          headerStyle: { backgroundColor: GlobalStyles.colors.primary100 },
           headerRight: () => <LogoutButton />,
         }}
       />

@@ -38,6 +38,11 @@ const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
       const { token } = response.data;
       console.log(token);
 
+      // const res = (axios.defaults.headers.common[
+      //   'Authorization'
+      // ] = `Bearer ${token}`);
+      // console.log(res);
+
       if (token) {
         await AsyncStorage.setItem('token', token);
         dispatch(setToken(token));
