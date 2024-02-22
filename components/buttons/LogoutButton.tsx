@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { removeToken } from '../../redux/usersReducer';
+import { removeToken, removeUsers } from '../../redux/usersReducer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Pressable, Text, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -12,6 +12,7 @@ const LogoutButton: React.FC = () => {
 
   const handleLogout = async () => {
     dispatch(removeToken());
+    dispatch(removeUsers());
     const token = await AsyncStorage.removeItem('token');
     console.log(token);
     navigation.reset({

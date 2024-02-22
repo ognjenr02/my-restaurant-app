@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface User {
+export interface User {
   username: string;
   password: string;
 }
@@ -28,10 +28,14 @@ const usersSlice = createSlice({
     removeToken(state) {
       state.token = null;
     },
+    removeUsers(state) {
+      state.users = [];
+    },
     // Add other actions here
   },
 });
 
-export const { addUser, setToken, removeToken } = usersSlice.actions;
+export const { addUser, setToken, removeToken, removeUsers } =
+  usersSlice.actions;
 
 export default usersSlice.reducer;

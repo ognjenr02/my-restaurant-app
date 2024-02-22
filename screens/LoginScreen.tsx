@@ -4,10 +4,10 @@ import { GlobalStyles } from '../constants';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useDispatch } from 'react-redux';
-import { setToken } from '../redux/usersReducer';
+import { addUser, setToken } from '../redux/usersReducer';
 
 const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
-  const [username, setUsername] = useState('');
+  const [username, setUsername]: any = useState('');
   const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
@@ -46,6 +46,7 @@ const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
       if (token) {
         await AsyncStorage.setItem('token', token);
         dispatch(setToken(token));
+        dispatch(addUser(username));
         navigation.navigate('Home');
       } else {
         // Handle login failure
