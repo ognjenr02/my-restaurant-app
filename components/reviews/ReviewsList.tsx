@@ -27,7 +27,7 @@ const ReviewsList: React.FC = () => {
       try {
         const response = await axios.get('http://192.168.1.5:8080/getReviews', {
           headers: {
-            Authorization: `Bearer ${token}`, // send the token in the headers
+            Authorization: `Bearer ${token.token}`, // send the token in the headers
           },
         });
         setData(response.data);

@@ -13,12 +13,12 @@ const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
   const dispatch = useDispatch();
 
   async function handleLogin() {
-    // if (username.trim() === '' || password.trim() === '')
-    if (
-      username.trim() === '' ||
-      password.trim() === '' ||
-      (username !== 'ognjenr02' && password !== '123')
-    ) {
+    if (username.trim() === '' || password.trim() === '') {
+      // if (
+      //   username.trim() === '' ||
+      //   password.trim() === '' ||
+      //   (username !== 'ognjenr02' && password !== '123')
+      // ) {
       alert('Please enter correct username and password!');
       // alert('Please enter both username and password.');
       return;
@@ -29,11 +29,11 @@ const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
       console.log(password);
 
       const response = await axios.post('http://192.168.1.5:8080/login', {
-        // username: username,
-        // password: password,
+        username: username,
+        password: password,
 
-        username: 'ognjenr02',
-        password: '123',
+        // username: 'ognjenr02',
+        // password: '123',
       });
       const { token } = response.data;
       console.log(token);

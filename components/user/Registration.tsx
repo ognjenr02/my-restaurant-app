@@ -1,23 +1,23 @@
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Button, StyleSheet, TextInput, View } from 'react-native';
 import React, { useState } from 'react';
 import axios from 'axios';
 import { GlobalStyles } from '../../constants';
 
 interface User {
-  FirstName: string;
-  LastName: string;
-  Email: string;
-  Username: string;
-  Password: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  username: string;
+  password: string;
 }
 
 const Registration = () => {
   const [user, setUser] = useState<User>({
-    FirstName: '',
-    LastName: '',
-    Email: '',
-    Username: '',
-    Password: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+    username: '',
+    password: '',
   });
 
   const registerUser = async (user: User): Promise<any> => {
@@ -43,30 +43,30 @@ const Registration = () => {
         style={styles.input}
         placeholder="First Name"
         maxLength={25}
-        onChangeText={(text) => setUser({ ...user, FirstName: text })}
+        onChangeText={(text) => setUser({ ...user, firstName: text })}
       />
       <TextInput
         style={styles.input}
         placeholder="Last Name"
         maxLength={25}
-        onChangeText={(text) => setUser({ ...user, LastName: text })}
+        onChangeText={(text) => setUser({ ...user, lastName: text })}
       />
       <TextInput
         style={styles.input}
         placeholder="Email"
-        onChangeText={(text) => setUser({ ...user, Email: text })}
+        onChangeText={(text) => setUser({ ...user, email: text })}
       />
       <TextInput
         style={styles.input}
         placeholder="Username"
         maxLength={15}
-        onChangeText={(text) => setUser({ ...user, Username: text })}
+        onChangeText={(text) => setUser({ ...user, username: text })}
       />
       <TextInput
         style={styles.input}
         placeholder="Password"
         maxLength={25}
-        onChangeText={(text) => setUser({ ...user, Password: text })}
+        onChangeText={(text) => setUser({ ...user, password: text })}
       />
       <Button title="Register" onPress={() => registerUser(user)} />
     </View>

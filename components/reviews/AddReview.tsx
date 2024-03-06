@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, Button, Image } from 'react-native';
+import { StyleSheet, View, TextInput, Button, Image } from 'react-native';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
@@ -11,67 +11,70 @@ const AddReview = () => {
   const [restaurantLocation, setRestaurantLocation] = useState('');
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState('');
-  const [image, setImage] = useState(null);
+  const [picture, setPicture] = useState('');
+  // const [pictureName, setPictureName] = useState(null);
 
   const token = useSelector((state: any) => state.users);
-  console.log(token);
+  // console.log(token.token);
 
   const pickImage = async () => {
-    // No permissions request is necessary for launching the image library
+    // No permissions request is necessary for launching the picture library
     let result: any = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
       aspect: [4, 3],
       quality: 1,
+      base64: true,
+      exif: true,
     });
 
-    console.log(result);
+    console.log(result.assets[0].uri);
 
     if (!result.canceled) {
-      setImage(result.assets[0].uri);
+      setPicture(result.assets[0].uri);
     }
   };
 
   async function addReview() {
-    // Create a new FormData object
     const formData: any = new FormData();
-    console.log('11111111111111111111111111111111111111111111111');
 
-    // Append the review data to the FormData object
+    const imageFile = {
+      uri: picture,
+      type: 'image/jpeg',
+      name: 'review-picture.jpeg',
+    };
+
     formData.append('title', title);
+    console.log('Title: ' + title);
     formData.append('restaurantName', restaurantName);
+    console.log('Restaurant Name: ' + restaurantName);
     formData.append('restaurantLocation', restaurantLocation);
+    console.log('Restaurant Location: ' + restaurantLocation);
     formData.append('comment', comment);
+    console.log('Comment: ' + comment);
     formData.append('rating', rating);
+    console.log('Rating: ' + rating);
+    formData.append('picture', imageFile);
+    console.log('Picture: ' + imageFile);
 
-    formData.append('picture', {
-      uri: image, // replace with your image URI
-      type: 'image/jpeg', // replace with your image type
-      name: 'review-image.jpg', // replace with your image name
-    });
-    console.log('11111111111111111111111111111111111111111111112');
-    // console.log(formData);
-    console.log(image);
+    // console.log('imageFile: ', imageFile);
+    console.log('Form Data:', formData);
 
     try {
-      console.log('11111111111111111111111111111111111111111111113');
+      console.log('Sending request...');
       const response = await axios.post(
         'http://192.168.1.5:8080/addReview',
         formData,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token.token}`,
             'Content-Type': 'multipart/form-data',
           },
         }
       );
-      // Handle the response here (e.g., show a success message or redirect to a different page)
-      console.log(response.data);
-      console.log('11111111111111111111111111111111111111111111114');
+      console.log('Request successful. Response:', response.data);
     } catch (error) {
-      // Handle the error here (e.g., show an error message)
-      console.log(error);
-      console.log('00000000000000000000000000000000000000000000000');
+      console.log('Error:', error);
     }
   }
 
@@ -103,9 +106,9 @@ const AddReview = () => {
         placeholder="Rating"
         keyboardType="numeric"
       />
-      <Button title="Pick an image from camera roll" onPress={pickImage} />
-      {image && (
-        <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />
+      <Button title="Pick an picture from camera roll" onPress={pickImage} />
+      {picture && (
+        <Image source={{ uri: picture }} style={{ width: 200, height: 200 }} />
       )}
       <Button title="Submit Review" onPress={addReview} />
     </View>
