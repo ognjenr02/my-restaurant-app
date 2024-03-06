@@ -1,4 +1,11 @@
-import { StyleSheet, View, TextInput, Button, Image } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  TextInput,
+  Button,
+  Image,
+  Alert,
+} from 'react-native';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
@@ -12,10 +19,32 @@ const AddReview = () => {
   const [comment, setComment] = useState('');
   const [rating, setRating] = useState('');
   const [picture, setPicture] = useState('');
-  // const [pictureName, setPictureName] = useState(null);
 
   const token = useSelector((state: any) => state.users);
-  // console.log(token.token);
+
+  // Function to handle the image picking from the camera
+  const takePicture = async () => {
+    const cameraPermission = await ImagePicker.requestCameraPermissionsAsync();
+
+    if (cameraPermission.status !== 'granted') {
+      Alert.alert('Camera permission is required to take a picture.');
+      return;
+    }
+
+    // Launch the camera with the following options
+    let result = await ImagePicker.launchCameraAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+      base64: true,
+      exif: true,
+    });
+
+    if (!result.canceled) {
+      setPicture(result.assets[0].uri);
+    }
+  };
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the picture library
@@ -107,6 +136,7 @@ const AddReview = () => {
         keyboardType="numeric"
       />
       <Button title="Pick an picture from camera roll" onPress={pickImage} />
+      <Button title="Take a picture" onPress={takePicture} />
       {picture && (
         <Image source={{ uri: picture }} style={{ width: 200, height: 200 }} />
       )}
