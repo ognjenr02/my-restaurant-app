@@ -5,6 +5,7 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useDispatch } from 'react-redux';
 import { addUser, setToken } from '../redux/usersReducer';
+import CustomButton from '../components/buttons/CustomButton';
 
 const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
   const [username, setUsername]: any = useState('');
@@ -14,13 +15,7 @@ const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
 
   async function handleLogin() {
     if (username.trim() === '' || password.trim() === '') {
-      // if (
-      //   username.trim() === '' ||
-      //   password.trim() === '' ||
-      //   (username !== 'ognjenr02' && password !== '123')
-      // ) {
       alert('Please enter correct username and password!');
-      // alert('Please enter both username and password.');
       return;
     }
 
@@ -31,17 +26,9 @@ const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
       const response = await axios.post('http://192.168.1.5:8080/login', {
         username: username,
         password: password,
-
-        // username: 'ognjenr02',
-        // password: '123',
       });
       const { token } = response.data;
       console.log(token);
-
-      // const res = (axios.defaults.headers.common[
-      //   'Authorization'
-      // ] = `Bearer ${token}`);
-      // console.log(res);
 
       if (token) {
         await AsyncStorage.setItem('token', token);
@@ -49,7 +36,6 @@ const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
         dispatch(addUser(username));
         navigation.navigate('Home');
       } else {
-        // Handle login failure
         console.log('Login failed: No token received');
       }
     } catch (error) {
@@ -60,7 +46,7 @@ const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Prijava</Text>
+      <Text style={styles.title}>Login or Sign Up</Text>
       <TextInput
         style={styles.input}
         placeholder="Username"
@@ -74,14 +60,9 @@ const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
         value={password}
         secureTextEntry
       />
-      <Button
-        color={GlobalStyles.colors.primary400}
-        title="Login"
-        onPress={handleLogin}
-      />
-      <Button
-        color={GlobalStyles.colors.primary400}
-        title="Sign up"
+      <CustomButton title="Login" onPress={handleLogin} />
+      <CustomButton
+        title="Sign Up"
         onPress={() => navigation.navigate('Register')}
       />
     </View>

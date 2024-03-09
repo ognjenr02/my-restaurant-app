@@ -4,6 +4,8 @@ import MapView, { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
 import axios from 'axios';
 import { GlobalStyles } from '../../constants';
+//@ts-ignore
+import { GOOGLE_MAPS_API_KEY } from '@env';
 
 const Map = () => {
   const [location, setLocation] = useState(null);
@@ -14,7 +16,7 @@ const Map = () => {
   const fetchRestaurants = async (location: any) => {
     try {
       const response = await axios.get(
-        `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location.coords.latitude},${location.coords.longitude}&radius=1000&type=restaurant&key=AIzaSyDmOT3cKuSWpJTkwYHpijlaojjSpSU4mTc`
+        `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${location.coords.latitude},${location.coords.longitude}&radius=1000&type=restaurant&key=${GOOGLE_MAPS_API_KEY}`
       );
       setRestaurants(response.data.results);
       setIsLoading(false);

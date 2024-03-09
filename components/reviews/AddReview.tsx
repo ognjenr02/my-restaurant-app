@@ -92,7 +92,7 @@ const AddReview = () => {
     try {
       console.log('Sending request...');
       const response = await axios.post(
-        'http://192.168.1.5:8080/addReview',
+        `http://192.168.1.5:8080/addReview`,
         formData,
         {
           headers: {

@@ -21,6 +21,7 @@ const ReviewsList: React.FC = () => {
   const navigation = useNavigation();
 
   const token = useSelector((state: any) => state.users);
+  // console.log(token.token);
 
   useEffect(() => {
     const fetchReviews = async () => {
