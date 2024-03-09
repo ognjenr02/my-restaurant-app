@@ -6,6 +6,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useDispatch } from 'react-redux';
 import { addUser, setToken } from '../redux/usersReducer';
 import CustomButton from '../components/buttons/CustomButton';
+//@ts-ignore
+import { APP_HOST } from '@env';
 
 const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
   const [username, setUsername]: any = useState('');
@@ -23,7 +25,7 @@ const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
       console.log(username);
       console.log(password);
 
-      const response = await axios.post('http://192.168.1.5:8080/login', {
+      const response = await axios.post(`http://${APP_HOST}:8080/login`, {
         username: username,
         password: password,
       });

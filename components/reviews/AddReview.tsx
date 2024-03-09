@@ -11,6 +11,8 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 import * as ImagePicker from 'expo-image-picker';
 import { GlobalStyles } from '../../constants';
+//@ts-ignore
+import { APP_HOST } from '@env';
 
 const AddReview = () => {
   const [title, setTitle] = useState('');
@@ -92,7 +94,7 @@ const AddReview = () => {
     try {
       console.log('Sending request...');
       const response = await axios.post(
-        `http://192.168.1.5:8080/addReview`,
+        `http://${APP_HOST}:8080/addReview`,
         formData,
         {
           headers: {

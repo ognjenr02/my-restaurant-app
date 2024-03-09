@@ -13,6 +13,8 @@ import { Buffer } from 'buffer';
 import { GlobalStyles } from '../../constants';
 import { useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
+//@ts-ignore
+import { APP_HOST } from '@env';
 
 const ReviewsList: React.FC = () => {
   const [data, setData] = useState([]);
@@ -26,7 +28,7 @@ const ReviewsList: React.FC = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await axios.get('http://192.168.1.5:8080/getReviews', {
+        const response = await axios.get(`http://${APP_HOST}:8080/getReviews`, {
           headers: {
             Authorization: `Bearer ${token.token}`, // send the token in the headers
           },

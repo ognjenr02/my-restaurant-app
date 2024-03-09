@@ -2,6 +2,8 @@ import { Button, StyleSheet, TextInput, View } from 'react-native';
 import React, { useState } from 'react';
 import axios from 'axios';
 import { GlobalStyles } from '../../constants';
+//@ts-ignore
+import { APP_HOST } from '@env';
 
 interface User {
   firstName: string;
@@ -23,7 +25,7 @@ const Registration = () => {
   const registerUser = async (user: User): Promise<any> => {
     try {
       const response = await axios.post(
-        'http://192.168.1.5:8080/registerUsers',
+        `http://${APP_HOST}:8080/registerUsers`,
         user
       );
 
