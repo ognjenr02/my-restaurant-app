@@ -1,55 +1,95 @@
-**README for React Native and Expo Project**
+# React Native and Expo Project
 
-Welcome to our React Native project using Expo! This project leverages the power of Expo to create universal native apps for Android, iOS, and the web with React and JavaScript.
+Welcome to our React Native project with Expo! This project uses Expo to create cross-platform native apps for Android, iOS, and the web using React and TypeScript.
 
-**What is Expo?**
+## About project
 
-Expo is an open-source platform that simplifies the process of building native apps. It provides a universal runtime and libraries, allowing you to write your app once and run it everywhere. The Expo client software includes client apps, modules, apps, CLI, and more. Additionally, Expo Application Services (EAS) offers a suite of hosted services that integrate deeply with Expo tools to help you build, ship, and iterate on your apps efficiently, whether you're working alone or as part of a team.
+This project is made of server-side and client-side. This is the client-side. The client-side was made using React Native, TypeScript and Expo. User can login from the app, see Reviews of other users and also post the new ones. Application also has a map where the user can see restaurants in radius of 1000 meters. Link to the server-side: 
 
-**Getting Started**
+## What is Expo?
 
-To get started with this project, you'll need to have Node.js installed on your machine. Once you have Node.js, you can install Expo CLI globally using npm:
+Expo is an open-source platform for making universal native apps with React. It provides a set of tools and services built around React Native and native platforms that help you develop, build, deploy, and quickly iterate on iOS, Android, and web apps from the same JavaScript/TypeScript codebase.
 
+## Prerequisites
+
+Before you begin, ensure you have Node.js installed on your system. You can download it from [Node.js official website](https://nodejs.org/).
+
+## Installation
+
+First, you'll need to install the Expo CLI:
+
+```bash
 npm install -g expo-cli
+```
 
+Or using Yarn:
 
-Or with yarn:
-
+```bash
 yarn global add expo-cli
+```
 
+## Creating a New Project
 
-After installing Expo CLI, you can create a new React Native app with support for iOS, Android, and web by running:
+To create a new React Native project with Expo, run:
+```bash
+expo init MyNewProject
+```
 
-npx create-react-native-app
+## Navigate into your new project directory:
+```bash
+cd MyNewProject
+```
 
+## Running the Project
 
-This project comes preconfigured with support for Expo Modules, allowing you to write native modules using Swift and Kotlin. This also enables you to use any library in the Expo SDK.
+To start the project, run:
+```bash
+npx expo start
+```
 
-**Running the App**
+This will start the Expo development server and open a page in your web browser with a QR code for you to scan using the Expo app on your mobile device.
 
-To run the app on your device, you can use the following commands:
+## Building Your App
 
-npm start # you can open iOS, Android, or web from here
-npm run ios # requires an iOS device or macOS for the simulator
-npm run android # requires an Android device or emulator
+To build your app for production, you can use the following commands:
+```bash
+expo build:android
+```
+```bash
+expo build:ios
+```
 
+Please note that as of my last update, Expo has transitioned to using Expo Application Services (EAS) for building apps which provides more flexibility and options for CI/CD workflows.
 
-You can also open the project in the Expo app on your phone to view it. The app will reload if you make edits to your source files.
+## Publishing Your App
 
-**Customization**
+To publish your app to Expo's servers, run:
+```bash
+expo publish
+```
 
-You can customize your app by setting the correct sdkVersion in app.json and updating the react-native, react, and expo package versions as needed. Check the versioning guide for the latest information on package version compatibility.
+## Ejecting from Expo
 
-**Ejecting from Expo**
+If you need to add custom native code to your project, you can eject from Expo by running:
+```bash
+expo eject
+```
 
-If you've made use of Expo APIs and need to eject to a regular React Native project, you can do so while still using the Expo APIs by ejecting to "React Native + ExpoKit." This allows you to build your own native code and continue using Expo APIs.
+## Contributing
 
-**Contributing**
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
 
-We welcome contributions to this project! Whether it's submitting bug reports, feature requests, or code contributions, your input is valuable to us. Please read through the Expo Community Guidelines for more information on how to participate in keeping our community open and welcoming.
+## License
 
-**Documentation**
+Distributed under the MIT License. See LICENSE for more information.
 
-For detailed instructions on building and deploying universal apps, refer to the official Expo documentation. It's a comprehensive guide that will help you understand the full capabilities of Expo and React Native.
+## Contact
 
-Thank you for choosing to work with Expo and React Native. We're excited to see what you build!
+LinkedIn - https://www.linkedin.com/in/ognjen-rodi%C4%87-4595241b3/
+
+Project Link: https://github.com/ognjenr02/my-restaurant-app
+
+## Acknowledgements
+
+    Expo Documentation
+    React Native Documentation
