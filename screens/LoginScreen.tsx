@@ -1,4 +1,4 @@
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View, Dimensions } from 'react-native';
 import React, { useState } from 'react';
 import { GlobalStyles } from '../constants';
 import axios from 'axios';
@@ -8,6 +8,9 @@ import { addUser, setToken } from '../redux/usersReducer';
 import CustomButton from '../components/buttons/CustomButton';
 //@ts-ignore
 import { APP_HOST } from '@env';
+
+const window = Dimensions.get('window');
+const isTablet = window.width >= 768;
 
 const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
   const [username, setUsername]: any = useState('');
@@ -47,7 +50,7 @@ const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={isTablet ? styles.containerTablet : styles.container}>
       <Text style={styles.title}>Login or Sign Up</Text>
       <TextInput
         style={styles.input}
@@ -80,6 +83,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: 765,
     backgroundColor: GlobalStyles.colors.primary50,
+  },
+  containerTablet: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: GlobalStyles.colors.primary50,
+    paddingHorizontal: '10%', // Add more padding for tablets
   },
   title: {
     fontSize: 24,

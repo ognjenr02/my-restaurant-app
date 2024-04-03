@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Dimensions, // Importing Dimensions from 'react-native'
 } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -17,13 +18,16 @@ import { APP_HOST } from '@env';
 
 // Define the types for your navigation parameters
 export type RootStackParamList = {
-  // ... other screen params
-  ReviewScreen: { reviewId: any }; // Assuming reviewId is of type string
+  ReviewScreen: { reviewId: any };
 };
 
 // Define the props for the ReviewScreen based on the navigation and route
 //@ts-ignore
 type ReviewScreenProps = NativeStackScreenProps<RootStackParamList, 'Reviews'>;
+
+// Get the window dimensions
+const window = Dimensions.get('window');
+const isTablet = window.width >= 768; // A simple threshold to determine if it's a tablet
 
 const ReviewScreen: React.FC<ReviewScreenProps> = ({ route, navigation }) => {
   //@ts-ignore
@@ -46,7 +50,6 @@ const ReviewScreen: React.FC<ReviewScreenProps> = ({ route, navigation }) => {
           }
         );
         setReview(response.data[0]);
-        // console.log(response.data[0]);
         setIsLoading(false);
       } catch (error) {
         console.error(error);
@@ -121,7 +124,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   title: {
-    fontSize: 30,
+    fontSize: isTablet ? 40 : 30,
     justifyContent: 'center',
     alignItems: 'center',
     textAlign: 'center',
@@ -129,7 +132,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: GlobalStyles.colors.primary50,
-    fontSize: 15,
+    fontSize: isTablet ? 20 : 15,
     borderBottomWidth: 0.5,
     borderBottomColor: GlobalStyles.colors.error50,
     padding: 10,

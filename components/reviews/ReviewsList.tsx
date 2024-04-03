@@ -6,6 +6,7 @@ import {
   Text,
   Pressable,
   View,
+  Dimensions,
 } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -16,6 +17,9 @@ import { useNavigation } from '@react-navigation/native';
 //@ts-ignore
 import { APP_HOST } from '@env';
 
+const window = Dimensions.get('window');
+const isTablet = window.width >= 768;
+
 const ReviewsList: React.FC = () => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -23,7 +27,6 @@ const ReviewsList: React.FC = () => {
   const navigation = useNavigation();
 
   const token = useSelector((state: any) => state.users);
-  // console.log(token.token);
 
   useEffect(() => {
     const fetchReviews = async () => {
@@ -64,7 +67,7 @@ const ReviewsList: React.FC = () => {
             <View style={styles.header}>
               <Text style={styles.headerText}>{item.Title}</Text>
             </View>
-            <Text>Restoraunt: {item.RestaurantName}</Text>
+            <Text>Restaurant: {item.RestaurantName}</Text>
             <Text>Location: {item.RestaurantLocation}</Text>
             <Text>
               Comment: {item.Comment.split(' ').slice(0, 10).join(' ')}...
@@ -98,11 +101,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'stretch',
     backgroundColor: GlobalStyles.colors.primary100,
-    paddingHorizontal: 20,
     paddingVertical: 10,
     marginVertical: 20,
     borderRadius: 10,
     elevation: 10,
+    paddingHorizontal: isTablet ? 40 : 20,
   },
   header: {
     alignItems: 'center',
@@ -110,7 +113,7 @@ const styles = StyleSheet.create({
     backgroundColor: GlobalStyles.colors.primary50,
   },
   headerText: {
-    fontSize: 22,
+    fontSize: isTablet ? 26 : 22,
     fontWeight: 'bold',
   },
   imageContainer: {
@@ -119,8 +122,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   image: {
-    width: 280,
-    height: 220,
+    width: isTablet ? 350 : 280,
+    height: isTablet ? 280 : 220,
     borderRadius: 20,
   },
 });

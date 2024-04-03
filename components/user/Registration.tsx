@@ -1,9 +1,12 @@
-import { Button, StyleSheet, TextInput, View } from 'react-native';
+import { Button, StyleSheet, TextInput, View, Dimensions } from 'react-native';
 import React, { useState } from 'react';
 import axios from 'axios';
 import { GlobalStyles } from '../../constants';
 //@ts-ignore
 import { APP_HOST } from '@env';
+
+const window = Dimensions.get('window');
+const isTablet = window.width >= 768;
 
 interface User {
   firstName: string;
@@ -31,9 +34,6 @@ const Registration = () => {
 
       console.log('User registered successfully');
       return response.data;
-
-      // console.log('User registration failed');
-      // return null;
     } catch (error) {
       console.error(error);
     }
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     backgroundColor: GlobalStyles.colors.primary50,
   },
   input: {
-    width: '80%',
+    width: isTablet ? '70%' : '80%',
     padding: 10,
     marginBottom: 20,
     borderWidth: 1,
