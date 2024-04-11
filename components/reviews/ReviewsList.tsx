@@ -17,8 +17,8 @@ import { useNavigation } from '@react-navigation/native';
 //@ts-ignore
 import { APP_HOST } from '@env';
 
-const window = Dimensions.get('window');
-const isTablet = window.width >= 768;
+// const window = Dimensions.get('window');
+// const isTablet = window.width >= 768;
 
 const ReviewsList: React.FC = () => {
   const [data, setData] = useState([]);
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     borderRadius: 10,
     elevation: 10,
-    paddingHorizontal: isTablet ? 40 : 20,
+    paddingHorizontal: 20,
   },
   header: {
     alignItems: 'center',
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     backgroundColor: GlobalStyles.colors.primary50,
   },
   headerText: {
-    fontSize: isTablet ? 26 : 22,
+    fontSize: 22,
     fontWeight: 'bold',
   },
   imageContainer: {
@@ -122,8 +122,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   image: {
-    width: isTablet ? 350 : 280,
-    height: isTablet ? 280 : 220,
+    width: 280,
+    height: 220,
     borderRadius: 20,
   },
 });

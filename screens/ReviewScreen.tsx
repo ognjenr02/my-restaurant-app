@@ -25,10 +25,6 @@ export type RootStackParamList = {
 //@ts-ignore
 type ReviewScreenProps = NativeStackScreenProps<RootStackParamList, 'Reviews'>;
 
-// Get the window dimensions
-const window = Dimensions.get('window');
-const isTablet = window.width >= 768; // A simple threshold to determine if it's a tablet
-
 const ReviewScreen: React.FC<ReviewScreenProps> = ({ route, navigation }) => {
   //@ts-ignore
   const { reviewId } = route.params;
@@ -124,7 +120,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   title: {
-    fontSize: isTablet ? 40 : 30,
+    fontSize: 30,
     justifyContent: 'center',
     alignItems: 'center',
     textAlign: 'center',
@@ -132,7 +128,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: GlobalStyles.colors.primary50,
-    fontSize: isTablet ? 20 : 15,
+    fontSize: 15,
     borderBottomWidth: 0.5,
     borderBottomColor: GlobalStyles.colors.error50,
     padding: 10,

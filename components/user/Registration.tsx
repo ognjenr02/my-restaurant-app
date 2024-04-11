@@ -5,8 +5,8 @@ import { GlobalStyles } from '../../constants';
 //@ts-ignore
 import { APP_HOST } from '@env';
 
-const window = Dimensions.get('window');
-const isTablet = window.width >= 768;
+// const window = Dimensions.get('window');
+// const isTablet = window.width >= 768;
 
 interface User {
   firstName: string;
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     backgroundColor: GlobalStyles.colors.primary50,
   },
   input: {
-    width: isTablet ? '70%' : '80%',
+    width: '80%',
     padding: 10,
     marginBottom: 20,
     borderWidth: 1,

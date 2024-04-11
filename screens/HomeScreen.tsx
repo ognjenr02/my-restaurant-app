@@ -3,12 +3,12 @@ import { StyleSheet, View, Dimensions } from 'react-native';
 import { GlobalStyles } from '../constants';
 import ReviewsList from '../components/reviews/ReviewsList';
 
-const window = Dimensions.get('window');
-const isTablet = window.width >= 768;
+// const window = Dimensions.get('window');
+// const isTablet = window.width >= 768;
 
 const HomeScreen = () => {
   return (
-    <View style={isTablet ? styles.containerTablet : styles.container}>
+    <View style={styles.container}>
       <ReviewsList />
     </View>
   );

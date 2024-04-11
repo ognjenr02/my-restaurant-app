@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TextInput, View, Dimensions } from 'react-native';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 import React, { useState } from 'react';
 import { GlobalStyles } from '../constants';
 import axios from 'axios';
@@ -9,8 +9,8 @@ import CustomButton from '../components/buttons/CustomButton';
 //@ts-ignore
 import { APP_HOST } from '@env';
 
-const window = Dimensions.get('window');
-const isTablet = window.width >= 768;
+// const window = Dimensions.get('window');
+// const isTablet = window.width >= 768;
 
 const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
   const [username, setUsername]: any = useState('');
@@ -50,7 +50,7 @@ const LoginScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
   }
 
   return (
-    <View style={isTablet ? styles.containerTablet : styles.container}>
+    <View style={styles.container}>
       <Text style={styles.title}>Login or Sign Up</Text>
       <TextInput
         style={styles.input}
